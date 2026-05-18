@@ -9,7 +9,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-load_dotenv()
+load_dotenv("config.env")
 
 CHROME_PATH = "/app/.chrome-for-testing/chrome-linux64/chrome"
 CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
@@ -21,9 +21,9 @@ MEGA_API = os.environ.get("MEGA_API", "")
 chrome_options = Options()
 chrome_options.binary_location = CHROME_PATH
 chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")  
-chrome_options.add_argument("--disable-dev-shm-usage")  
-chrome_options.add_argument("--disable-gpu")  
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--remote-debugging-port=9222")
 chrome_options.add_argument("--single-process")
 chrome_options.add_argument("--disable-extensions")
@@ -38,12 +38,12 @@ def login():
         print("Page Title:", driver.title)
 
         email_input = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.ID, "login-name2"))
+            EC.presence_of_element_located((By.ID, "login-name3"))
         )
         email_input.send_keys(MEGA_EMAIL)
 
         password_input = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.ID, "login-password2"))
+            EC.presence_of_element_located((By.ID, "login-password3"))
         )
         password_input.send_keys(MEGA_PASSWORD)
         password_input.send_keys(Keys.RETURN)
